@@ -1,0 +1,6 @@
+interface:
+  display_name: "Assurance Case"
+  short_description: "Map consequential claims to falsifiable evidence"
+  default_prompt: "Use $assurance-case to check the changed claims, state transitions, and decisive test evidence."
+policy:
+  allow_implicit_invocation: true

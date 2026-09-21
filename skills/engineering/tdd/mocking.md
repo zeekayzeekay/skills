@@ -11,7 +11,9 @@ Don't mock:
 
 - Your own classes/modules
 - Internal collaborators
-- Anything you control
+- Internal implementation details merely because you control them
+
+A locally implemented adapter may still expose a real system boundary. Fake the remote service, clock or fault there, while retaining the real policy, state aggregation and receipt logic under test. Avoid mocks that manufacture the very status or safety decision the test is meant to verify. Never use live credentials, private data or billable calls merely to satisfy a unit/integration test.
 
 ## Designing for Mockability
 

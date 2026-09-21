@@ -23,7 +23,7 @@ The route most work travels. You have an idea and want it built.
    - **Yes** → **`/to-spec`** (turn the thread into a spec), then **`/to-tickets`** to split it into tracer-bullet tickets, each declaring its **blocking edges**. On a local tracker that's one file per ticket under `.scratch/<feature>/issues/`, worked blockers-first by hand; on a real tracker the edges become native blocking links, so any ticket whose blockers are done can be grabbed: kick off **`/implement`** per ticket, **`/clear`ing context between each one**. Each ticket is self-contained, so the last one's context is disposable.
    - **No** → **`/implement`** right here, in the same context window.
 
-   Either way, **`/implement`** builds each issue by driving **`/tdd`** internally (one red-green slice at a time), then closes out by running **`/code-review`**, a two-axis review (Standards + Spec) of the diff, before committing. Reach for **`/tdd`** on its own when you just want to build a concrete behaviour test-first without a full spec, and **`/code-review`** on its own whenever you want to review a branch or PR against a fixed point.
+   Either way, **`/implement`** builds each issue by driving **`/tdd`** internally (one red-green-refactor slice at a time), then closes out with **`/code-review`** on Standards, Spec and Assurance, including relevant uncommitted work. Commits require user/repository authority. Reach for **`/tdd`** directly for a concrete behavior, and **`/code-review`** for a branch, PR or work-in-progress review. Reuse settled scope; this map is not a requirement to restart completed phases.
 
 ### Context hygiene
 
@@ -53,10 +53,12 @@ Not feature work, just upkeep.
 
 ## Vocabulary underneath
 
-Two model-invoked references that run *beneath* the other skills, each the single source of truth for its vocabulary. Reach for them directly when the **words**, not the process, are the problem; or let the skills above pull them in.
+Model-invoked references run *beneath* the other skills, each with its own scope. Reach for them directly when needed, or let the skills above pull them in.
 
 - **`/domain-modeling`**: sharpen the project's *domain* language: challenge a fuzzy term, resolve an overloaded word ("account" doing three jobs), record a hard-to-reverse decision as an ADR. It's the active discipline `/grill-with-docs` drives to keep `CONTEXT.md` a clean glossary.
 - **`/codebase-design`** is the deep-module vocabulary (module, interface, depth, seam, adapter, leverage, locality) for designing a module's *shape*: a lot of behaviour behind a small interface at a clean seam. `/tdd` and `/improve-codebase-architecture` both speak it.
+
+**`/assurance-case`** is the local reference for consequential claims: state transitions and precedence, decisive tests and evidence limits. `implement`, `tdd` and `code-review` use its one compact map when changed access, integrity, spending or audit behavior warrants it. It is not a separate mandatory phase or a blanket production gate.
 
 ## Phase boundaries
 
@@ -85,6 +87,14 @@ Off the main flow entirely.
 - **`/teach`**: learn a concept over multiple sessions, using the current directory as a stateful workspace.
 - **`/writing-for-agents`** is the reference for writing documents agents consume: skills, AGENTS.md, pointed-at docs.
 
+## Additional local installation
+
+The local all-current installation also includes upstream's unpromoted buckets. Read the target `SKILL.md` before making a load-bearing routing claim, and label its maturity. Availability does not authorize its effects. Do not infer that an explicit-only skill is missing merely because it is absent from the automatic-discovery list.
+
+- **Beta workflows:** `loop-me` (multi-session workflow specs), `implement-spec` (whole-spec parallel build), `claude-handoff` (Claude-specific background handoff), `setup-ts-deep-modules` (TypeScript module checks), `pr` (PR-body reference), and `retro` (retrospective; upstream marks it a design-notes stub).
+- **Beta writing:** `writing-beats`, `writing-fragments`, `writing-shape`.
+- **Miscellaneous:** `git-guardrails-claude-code`, `migrate-to-shoehorn`, `scaffold-exercises`, `setup-pre-commit`. These have tool/language-specific purposes; being installed does not make their setup appropriate for every project.
+
 ## Precondition
 
-**`/setup-matt-pocock-skills`**: run before your first engineering flow to configure the issue tracker, triage labels, and doc layout the other skills assume. Custom issue trackers also work.
+**`/setup-matt-pocock-skills`**: use when a chosen tracker-dependent workflow needs missing tracker, triage-label or doc-layout configuration. Custom issue trackers also work. A local review or implementation with an already-agreed contract does not need setup just to use these skills.
