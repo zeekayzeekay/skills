@@ -20,7 +20,7 @@ Characteristics:
 - Uses public API only
 - Survives internal refactors
 - Describes WHAT, not HOW
-- One logical assertion per test
+- One coherent behavior per test, with as many assertions as its contract requires
 
 ## Bad Tests
 
@@ -39,13 +39,13 @@ Red flags:
 
 - Mocking internal collaborators
 - Testing private methods
-- Asserting on call counts/order
+- Asserting on incidental internal call counts/order
 - Test breaks when refactoring without behavior change
 - Test name describes HOW not WHAT
 - Verifying through external means instead of interface
 
 ```typescript
-// BAD: Bypasses interface to verify
+// BAD: Incidental storage detail, when retrieval is the promised interface
 test("createUser saves to database", async () => {
   await createUser({ name: "Alice" });
   const row = await db.query("SELECT * FROM users WHERE name = ?", ["Alice"]);
@@ -59,6 +59,12 @@ test("createUser makes user retrievable", async () => {
   expect(retrieved.name).toBe("Alice");
 });
 ```
+
+## Contractual side effects are observable behavior
+
+An append-only event row, durable receipt, or outbound provider boundary can itself be the promised interface. Use an isolated real store for persistence guarantees and a fake external provider for dispatch. Checking that a denied request made **zero external calls**, or that an already-sent failed attempt has one correctly attributed durable receipt, is a behavioral test, not internal mock coupling. Check exact fields and relevant absences; a mere `receipt exists` assertion does not prove its truth.
+
+Keep the test at the contract boundary. Do not assert a private helper's call order when the externally observable ordering or outcome can be checked instead.
 
 **Tautological tests**: Expected value restates the implementation, so the test passes by construction.
 
