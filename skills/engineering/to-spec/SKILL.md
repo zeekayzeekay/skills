@@ -12,6 +12,8 @@ The issue tracker and triage label vocabulary should have been provided to you. 
 
 1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the spec, and respect any ADRs in the area you're touching.
 
+Invoke `delivery-mode-engineering` through the harness's skill tool, or read its `SKILL.md` if no skill tool exists. Carry its shared delivery context from the agreed conversation and active contract into the spec. Reuse settled mode, outcomes, limitations and growth boundaries; mark material unknowns without inventing requirements or restarting the interview. Keep the requested artifact's authority separate from permission to implement.
+
 2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
 
 Check with the user that these seams match their expectations.
@@ -30,7 +32,7 @@ The solution to the problem, from the user's perspective.
 
 ## User Stories
 
-A LONG, numbered list of user stories. Each user story should be in the format of:
+A numbered list covering the agreed supported workflows and current core outcomes. Each user story should be in the format of:
 
 1. As an <actor>, I want a <feature>, so that <benefit>
 
@@ -38,7 +40,11 @@ A LONG, numbered list of user stories. Each user story should be in the format o
 1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
 </user-story-example>
 
-This list of user stories should be extremely extensive and cover all aspects of the feature.
+Cover the agreed feature completely; length is not a target and future possibilities are not additional stories.
+
+## Delivery Context
+
+Reference the governing contract section and carry the relevant shared delivery context defined by `delivery-mode-engineering`. Preserve the current acceptance gate and decisive core-quality checks. Record accepted limitations and qualifying future boundaries separately from current functionality.
 
 ## Implementation Decisions
 
@@ -63,6 +69,7 @@ A list of testing decisions that were made. Include:
 - A description of what makes a good test (only test external behavior, not implementation details)
 - Which modules will be tested
 - Prior art for the tests (i.e. similar types of tests in the codebase)
+- The current proof/floor claims each check supports and the observable wrong outcome it would detect
 
 ## Out of Scope
 

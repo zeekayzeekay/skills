@@ -41,6 +41,8 @@ The edges are the point of the artifact. They read two ways depending on the tra
 
 The edges live in the ticket either way. The medium only decides whether anything can act on them in parallel. `to-tickets` produces the artifact; running it (one session at a time, or a fleet) is your job, not the skill's.
 
+This fork carries the governing delivery context into each ticket by reference, using the bundled `delivery-mode-engineering` definitions. Blocking edges identify current behavior or evidence dependencies. Accepted limitations and justified growth boundaries survive the split, so future hardening does not silently become today's prerequisite.
+
 ## The wide-refactor exception
 
 One shape breaks the tracer-bullet rule. A **wide refactor** is a single mechanical change (rename a column, retype a shared symbol) whose **blast radius** fans across the whole codebase, so one edit breaks thousands of call sites and no vertical slice can land green.
@@ -74,7 +76,7 @@ They did, and that was a bug: a single shared file also raced when parallel agen
 A very large spec can outgrow what a tracker issue serves back cleanly, and there is no local copy to fall back on, so the agent then burns [tool calls](https://www.aihero.dev/ai-coding-dictionary/tool-call) re-fetching chunks and never reaches the end. Don't [clear](https://www.aihero.dev/ai-coding-dictionary/clearing) or [compact](https://www.aihero.dev/ai-coding-dictionary/compaction) between `/to-spec` and `/to-tickets`. Run them in the same context window and the spec never has to be fetched back at all.
 
 **The acceptance criteria graded nothing: some passed before any work was done.**
-The template asks for criteria and says nothing about whether they can fail, so this happens. Three shapes recur: a criterion already true at the base commit, a criterion that can only be satisfied by work another ticket owns, and one that restates the request rather than deriving from the artifact. Vertical slicing prevents most of it (a slice that delivers behaviour which didn't exist before is red at the base commit by construction), but the check is worth doing by hand. For each criterion, name the observation that would show it false, and confirm it fails at the commit the implementer starts from.
+This fork requires criteria to name an observable result and the current claim it supports. Check the failure the observation would expose and which slice owns it. New behavior should be absent before implementation; preserved invariants can already pass and should be identified as regression protection. A criterion requiring another ticket's unfinished work belongs behind an explicit dependency.
 
 **The tickets are published. How do I actually run them?**
 The skill stops at the artifact, and there is no auto-dispatch mode. Dispatch is manual: look at the board, count the tickets with no open blockers, and open that many agent sessions. One ticket per fresh context, cleared between them. Be aware that [implement](https://aihero.dev/skills-implement) does not reliably close or check off the ticket when it finishes, on GitHub or in local markdown, so the ticket's state is yours to update.
@@ -84,7 +86,7 @@ The skill stops at the artifact, and there is no auto-dispatch mode. Dispatch is
 - Every ticket has an answer to "what can I demo when this is done?", and the answer is behaviour, not a layer.
 - The list comes back to you numbered, with a "Blocked by" line on each, before anything is published.
 - The ticket at the top has no blockers and can be started immediately.
-- Nothing in a ticket body is a file path or a line number, except a snippet a prototype produced.
+- Governing artifacts are referenced directly; implementation paths are omitted unless a prototype snippet carries a decision.
 - Each ticket reads like something a fresh session could finish without you in the room.
 - Prefactoring, where it found any, is at the front of the order rather than mixed into feature tickets.
 

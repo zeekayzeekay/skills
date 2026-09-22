@@ -12,9 +12,9 @@ A **flow** is a path through the skills. Most paths run along one **main flow**,
 
 ## The main flow: idea → ship
 
-The route most work travels. You have an idea and want it built.
+The route most work travels. You have an idea and want it built. Enter at the unresolved step and reuse existing artifacts; the active delivery contract governs which stages the current work needs.
 
-1. **`/grill-with-docs`** sharpens the idea by interview. Start here whenever you are **working in a working directory**: it's stateful, retaining what it learns in `CONTEXT.md` and ADRs. (No working directory? Use `/grill-me` instead, covered under Standalone. Both run the same `/grilling` primitive; `grill-with-docs` is the one that leaves a paper trail, which makes it the better of the two whenever a repo is there to leave it in.)
+1. **`/grill-with-docs`** sharpens an unresolved idea by interview when you are **working in a working directory**: it's stateful, retaining what it learns in `CONTEXT.md` and ADRs. (No working directory? Use `/grill-me` instead, covered under Standalone. Both run the same `/grilling` primitive; `grill-with-docs` is the one that leaves a paper trail.)
 2. **Branch: can you settle every question in conversation?** If a question needs a runnable answer (state, business logic, a UI you have to see), detour through a prototype, bridged by **`/handoff`** in both directions (a prototype lives in its own directory, which is exactly what `/handoff` is for; see Phase boundaries):
    - **`/handoff`** out, then open a fresh session against that file,
    - **`/prototype`** to answer the question with throwaway code,
@@ -60,6 +60,8 @@ Model-invoked references run *beneath* the other skills, each with its own scope
 
 **`/assurance-case`** is the local reference for consequential claims: state transitions and precedence, decisive tests and evidence limits. `implement`, `tdd` and `code-review` use its one compact map when changed access, integrity, spending or audit behavior warrants it. It is not a separate mandatory phase or a blanket production gate.
 
+**`/delivery-mode-engineering`** owns delivery calibration across planning, implementation and review. It keeps required core outcomes, current exposure, accepted limitations and justified growth boundaries in one contract; it also defines which review findings block the current delivery. It is bundled here and independently usable. Other skills apply its relevant rules within the work already authorized. An inherited routine fix does not start a new interview, contract or lifecycle phase.
+
 ## Phase boundaries
 
 A **phase** is a chunk of work inside a session: the grilling, the implementation, the QA. At the **boundary** between two of them you have five options, and picking between them is the fuzziest decision in this whole map:
@@ -91,7 +93,7 @@ Off the main flow entirely.
 
 The local all-current installation also includes upstream's unpromoted buckets. Read the target `SKILL.md` before making a load-bearing routing claim, and label its maturity. Availability does not authorize its effects. Do not infer that an explicit-only skill is missing merely because it is absent from the automatic-discovery list.
 
-- **Beta workflows:** `loop-me` (multi-session workflow specs), `implement-spec` (whole-spec parallel build), `claude-handoff` (Claude-specific background handoff), `setup-ts-deep-modules` (TypeScript module checks), `pr` (PR-body reference), and `retro` (retrospective; upstream marks it a design-notes stub).
+- **Beta workflows:** `loop-me` (multi-session workflow specs), `implement-spec` (whole-spec parallel build using the shared delivery context, review dispositions and readiness handoff), `claude-handoff` (Claude-specific background handoff), `setup-ts-deep-modules` (TypeScript module checks), `pr` (PR-body reference), and `retro` (retrospective; upstream marks it a design-notes stub).
 - **Beta writing:** `writing-beats`, `writing-fragments`, `writing-shape`.
 - **Miscellaneous:** `git-guardrails-claude-code`, `migrate-to-shoehorn`, `scaffold-exercises`, `setup-pre-commit`. These have tool/language-specific purposes; being installed does not make their setup appropriate for every project.
 

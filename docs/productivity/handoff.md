@@ -33,6 +33,8 @@ The document carries the live thread (what's in flight, why, and what's next) pl
 
 What it deliberately does not carry is anything already written down. Specs, plans, ADRs, issues, commits and diffs are referenced by path or URL, never copied. That keeps the file small, and it keeps the settled detail in one place instead of two that drift.
 
+For development work, this fork carries the shared delivery context from `delivery-mode-engineering`: the governing section, current acceptance claims, evidence limits and review dispositions. If the destination cannot access a referenced artifact, the necessary authorized excerpt travels with its origin. Independent review handoffs carry those sources and raw evidence without the implementer's completion narrative or proposed fixes.
+
 ## Common questions
 
 **Handoff or compact?**
@@ -59,6 +61,10 @@ Ask whether it's true next month. `CLAUDE.md` is standing context about the proj
 **It captures the what, not the why.**
 A fair and repeated criticism. Two things help. Pass the argument (tell it what the next session is for) so the reasoning that bears on *that* is kept rather than flattened. And watch for confident claims the session never actually verified: "X isn't built", "Y is done". The next agent treats the document as a contract and will not re-check it, so a belief written as a fact becomes a false premise for everything that follows. Read the document before you hand it over, and downgrade anything you only assumed.
 
+**Will a different reviewer use the same delivery bar?**
+
+The handoff gives them the governing contract and calibration definitions, including current quality requirements and accepted limitations. That preserves the bar without coaching the reviewer toward the implementer's verdict.
+
 **Why is it a skill rather than a slash command?**
 Both work; they suit different situations. As a skill it ships and updates through the same install path as everything else here, which is what makes it shareable; the constraint that the agent won't fire it itself is set by its frontmatter rather than by the mechanism.
 
@@ -67,6 +73,7 @@ Both work; they suit different situations. As a skill it ships and updates throu
 - The document is a small fraction of the conversation, and the specs, issues and diffs appear in it as paths and URLs rather than as copied text.
 - You can read it cold, without the original session open, and know what to do next.
 - The fresh agent starts working instead of asking you to re-explain the setup.
+- A receiving developer or reviewer uses the same current acceptance criteria.
 - In the fork case, your original session is still sitting there untouched when you come back to it.
 - The suggested-skills section names the skill you'd have reached for yourself.
 - Nothing in it is a key, a token, or a password.

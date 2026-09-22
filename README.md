@@ -24,7 +24,7 @@ If you want to keep up with changes to these skills, and any new ones I create, 
 
 ## Fork-specific guidance
 
-This fork adds scoped evidence assurance to implementation, TDD and review. Follow [LOCAL-FORK.md](./LOCAL-FORK.md) for this branch's installation, validation and upstream-update guidance, including optional beta and miscellaneous skills. The original upstream installation instructions below do not include these fork-specific changes.
+This fork adds scoped evidence assurance and shared delivery calibration from planning through review. It bundles delivery-mode engineering as an independently usable skill. Follow [LOCAL-FORK.md](./LOCAL-FORK.md) for this branch's global installation, validation and upstream-update guidance, including beta and miscellaneous skills. The original upstream installation instructions below do not include these fork-specific changes.
 
 ## Installation (30-second setup)
 
@@ -215,6 +215,7 @@ Skills I use daily for code work.
 - **[codebase-design](./skills/engineering/codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
 - **[code-review](./skills/engineering/code-review/SKILL.md)**: Standards, Spec and Assurance review of a pinned state, including relevant uncommitted work, with independent passes for substantial changes.
 - **[assurance-case](./skills/engineering/assurance-case/SKILL.md)**: Local reference connecting consequential claims, state transitions and decisive evidence, without a blanket production checklist.
+- **[delivery-mode-engineering](./skills/engineering/delivery-mode-engineering/SKILL.md)**: Keep core quality, current delivery rigor and justified growth boundaries consistent from planning through review.
 - **[resolving-merge-conflicts](./skills/engineering/resolving-merge-conflicts/SKILL.md)**: Work through an in-progress git merge or rebase conflict hunk by hunk, resolving by intent traced to each side's primary source, then finish the operation (never `--abort`).
 - **[wizard](./skills/engineering/wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.
 

@@ -1,6 +1,6 @@
 ## What it does
 
-Routes a situation to the appropriate skill or flow. It recommends the next step rather than restarting phases already completed. This local version maps the promoted, beta and miscellaneous skills plus the local `assurance-case` reference.
+Routes a situation to the appropriate skill or flow. It recommends the next step rather than restarting phases already completed. This local version maps the promoted, beta and miscellaneous skills, including `assurance-case` and the bundled `delivery-mode-engineering` reference.
 
 ## When to reach for it
 
@@ -14,7 +14,11 @@ The router does not install skills. A workflow that depends on an issue tracker 
 
 The main path runs from sharpening an idea to implementation and review, with prototypes and research only where useful. Existing settled work can enter at implementation. Red-green-refactor supplies feedback; review separates Standards, Spec and Assurance. The local assurance reference supports consequential claims without creating a new production gate.
 
+Delivery-mode engineering runs across those steps: it keeps core outcomes, current rigor, accepted limitations and justified future boundaries consistent. It also owns review dispositions and the stopping rule. You can use it independently; bundling it does not create another phase or require a new interview for a routine fix.
+
 Beta and miscellaneous tools are available in this installation but keep their upstream maturity and platform limits. In particular, upstream marks `retro` as a design-notes stub.
+
+The beta `implement-spec` workflow carries the same delivery context and review dispositions through its parallel ticket work. Its final handoff distinguishes PR review status from demonstrated mode readiness and keeps unresolved evidence visible.
 
 ## Common questions
 

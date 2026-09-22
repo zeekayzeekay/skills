@@ -29,5 +29,6 @@ Model- or user-reachable (rich trigger phrasing so the model can reach for them)
 - **[codebase-design](./codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: small interfaces, clean seams, testable through the interface.
 - **[code-review](./code-review/SKILL.md)**: Standards, Spec and Assurance review of a pinned state, including relevant uncommitted work.
 - **[assurance-case](./assurance-case/SKILL.md)**: Local reference mapping consequential claims and state transitions to decisive test evidence.
+- **[delivery-mode-engineering](./delivery-mode-engineering/SKILL.md)**: Shared delivery calibration and review dispositions, preserving core quality and inexpensive future boundaries.
 - **[resolving-merge-conflicts](./resolving-merge-conflicts/SKILL.md)**: Work through an in-progress git merge or rebase conflict hunk by hunk, resolving by intent traced to each side's primary source, then finish the operation, never `--abort`.
 - **[wizard](./wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.

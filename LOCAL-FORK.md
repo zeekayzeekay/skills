@@ -9,24 +9,26 @@ This fork's [main branch](https://github.com/zeekayzeekay/skills/tree/main) cont
 | `upstream` = `mattpocock/skills` | Source of Matt's future changes; not a destination for our pushes |
 | `origin` = `zeekayzeekay/skills` | Our hosted fork; `main` is the reviewed default version |
 | Local public checkout | Workspace for changes and upstream integration, developed on a branch from `origin/main` |
-| Shared `.agents/skills` directories | Installed copies of a validated checkout, read by Codex |
-| Claude skill-directory junctions | Point to those shared installed copies, not the source checkout |
+| Shared `.agents/skills` directories | Installed copies of one validated checkout, discovered natively by compatible agents |
+| Agent-specific skill-directory junctions | Point to those shared installed copies where the installer needs an alias |
+| Standalone `delivery-mode-engineering` repository | Canonical source for the locally created delivery skill; update and validate it before syncing this fork's mirror |
 
 There is no automatic GitHub-to-installation synchronization. Fetching, merging or pushing changes does not update active skill copies; installation is a separate, explicit release step. Git's shared ancestry lets us inspect divergence and merge upstream changes while retaining our customizations.
 
-The separate `delivery-mode-engineering` skill is not part of this fork. Where it is installed through a direct junction to its own source repository, source edits are immediately active. Check the actual link target before editing or updating it; do not treat it as one of this fork's copied releases.
+`delivery-mode-engineering` remains canonically maintained in its standalone Git repository. This fork carries a reviewed mirror so the complete skill set can be installed on another machine. Make delivery-skill changes in the standalone repository first, commit and validate them there, then sync the mirror and record its source revision in this file. On the canonical development machine, the shared installed skill may be a direct junction to that standalone checkout; inspect the actual link target before an all-skills install and never silently replace it with the mirror. Other machines may use the validated copied bundle.
 
 ## What differs
 
 - `implement` maps agreed behavior to decisive checks, explicitly loads TDD/review, and distinguishes implemented, tested and unvalidated work.
 - `tdd` uses red-green-refactor at agreed or existing public seams and tests relevant state transitions and compositions.
-- `code-review` separates Standards, Spec and Assurance, includes relevant uncommitted files, and uses clean-context independent reviewers for substantial changes. It has no fixed 400-word limit.
+- `code-review` separates Standards, Spec and Assurance, includes relevant uncommitted files, and uses clean-context independent reviewers with the same delivery context for substantial changes. Severity and current-delivery disposition are separate. It has no fixed 400-word limit.
 - `assurance-case` is the shared compact claim/state/evidence method for consequential behavior. It is not a blanket production checklist.
+- `delivery-mode-engineering` owns current acceptance, review dispositions and justified future boundaries. Specs, tickets, implementation and handoffs carry the same context without restarting settled work. Required core outcomes stay evidenced in every mode.
 - `ask-matt`, supporting references, invocation metadata and human-facing docs reflect these changes.
 
 The upstream skill set is otherwise retained, including beta and miscellaneous skills. Their presence does not imply stable behavior or compatibility with every platform or harness. `retro` is still described by upstream as a design-notes stub. Deprecated names should not be installed.
 
-`delivery-mode-engineering` is an optional separately maintained skill, not bundled into this fork. No private installation receipts, machine-specific logs or unrelated project records are included here.
+Delivery calibration is independently usable and adds no mandatory lifecycle phase. No private installation receipts, machine-specific logs or unrelated project records are included here.
 
 ## Install a reviewed release
 
@@ -37,12 +39,16 @@ Clone our fork's `main` and use the standard installer from the reviewed checkou
 ```sh
 git clone --branch main --single-branch https://github.com/zeekayzeekay/skills.git engineering-skills
 cd engineering-skills
-npx --yes skills@1.7.0 add . --global --agent codex claude-code --skill '*' --full-depth --yes
+npx --yes skills@1.7.0 add . --global --agent codex claude-code grok cursor gemini-cli github-copilot --skill '*' --full-depth --yes
 ```
 
-The initial customized release contains 38 upstream skills plus `assurance-case`. The installation policy includes all current engineering, productivity, beta and miscellaneous skills; the plugin ships only the promoted subset. Recompute the current names for each release. If deprecated SKILL.md files are present, replace `'*'` with an explicit approved current-name list. Avoid `--all` unless you intend to install to every supported agent runtime. Do not use `scripts/link-skills.sh` for this snapshot workflow: its bucket selection and live source links have different semantics.
+Select explicit agent targets for the configured runtimes; the command above covers Codex, Claude Code, Grok Build, Cursor, Gemini CLI and GitHub Copilot. When launched inside an agent, the installer can otherwise select only that caller and its universal targets. Add a newly installed runtime through the standard installer's supported agent target rather than keeping an independently edited copy.
 
-The local-source installer copies into the shared skill directory and links Claude to those installed copies. It does not automatically retire renamed skills or replace older global GitHub lock entries. Back up the lock and change only entries owned by this fork; stale upstream entries can let a later upstream update overwrite custom skills. Keep machine-specific release receipts outside Git. New skills are available after the harness refreshes discovery; use a fresh task when earlier instructions are already loaded.
+The bundled release contains 38 upstream skills plus `assurance-case` and `delivery-mode-engineering`. The installation policy includes all current engineering, productivity, beta and miscellaneous skills; the plugin ships only the promoted subset. Recompute the current names for each release. If deprecated SKILL.md files are present, replace `'*'` with an explicit approved current-name list. Avoid `--all` unless you intend to install to every supported agent runtime. Do not use `scripts/link-skills.sh` for this snapshot workflow: its bucket selection and live source links have different semantics.
+
+On the machine that owns the canonical standalone delivery-skill checkout, preserve its verified junction: install the other skills from this fork with an explicit current-name list that excludes `delivery-mode-engineering`, or restore and re-verify that junction immediately after a snapshot install. The vendored copy is a distribution mirror, not the authoring source.
+
+The local-source installer copies into the shared skill directory and creates agent aliases where needed. The inspected Grok Build also discovers the shared directory natively. Preserve a single installed source even when several discovery paths exist. The installer does not automatically retire renamed skills or replace older global GitHub lock entries. Back up the lock and change only entries owned by this fork; remove stale upstream records for locally released skills so a later upstream update cannot overwrite customizations. Record local release provenance in the private receipt rather than inventing unsupported lock fields. Keep machine-specific release receipts outside Git. New skills are available after the harness refreshes discovery; use a fresh task when earlier instructions are already loaded.
 
 ## Validate and update
 
@@ -54,7 +60,7 @@ python -B -X utf8 -m unittest discover -s local -p test_verify_install.py -v
 python -B -X utf8 local/verify_install.py <installed-skills-root> <claude-skills-root>
 ```
 
-The installation verifier compares exact bytes, including reference files and invocation metadata. Run it against the same checkout used for installation; different Git line-ending settings can produce byte differences despite equal Git blobs. [Validation notes](local/VALIDATION.md) distinguish checks from limitations.
+The installation verifier compares exact bytes, including reference files and invocation metadata. Run it once for the shared root and again for each actual alias root; the optional second argument remains compatible with the existing Claude command. Agents discovering the shared root do not need duplicate copies. Inspect resolved link targets as well as bytes, then use each available runtime's discovery mechanism (for example, Grok's `inspect --json`, filtered to skill data). Filesystem equality alone is not a claim of runtime discovery or automatic invocation. Run against the same checkout used for installation; different Git line-ending settings can produce byte differences despite equal Git blobs. [Validation notes](local/VALIDATION.md) distinguish checks from limitations.
 
 For an authorized upstream update:
 
@@ -64,7 +70,7 @@ For an authorized upstream update:
 4. Run the structural checks and focused tests above. For material skill-behavior changes, use bounded fresh-context probes and an ordinary-change control where useful. Update affected docs/router entries and report known validator limitations rather than calling them passes.
 5. Inspect the exact outgoing diff and reachable commit history for private paths, receipts, secrets and unrelated project records. Commit an explicit path list, push only the intended public branch to `origin`, and obtain the required review/merge approval before it enters `main`. Maintenance instructions do not authorize upstream pushes, automatic merges or scheduled updates.
 6. Before installation, back up affected owned skill directories and installer metadata outside skill discovery. Install from the reviewed checkout, reconcile new/renamed/retired names and stale upstream-owned lock entries, then compare every installed file with the source. Preserve other skill providers and report any drift instead of overwriting unexplained edits.
-7. Keep the release's source/upstream commits, validation results, per-file hashes and backup location in a private local receipt. Report separately what was merged/pushed and what was actually installed. Confirm the harness sees the new release on its next discovery refresh.
+7. Keep the release's source/upstream commits, uncommitted patch fingerprint when applicable, validation results, per-file hashes, installed targets and backup location in a private local receipt. Report separately what was merged/pushed and what was actually installed. Confirm each available harness sees the new release on its next discovery refresh; report unavailable runtimes separately. Restore owned copies, link targets and matching lock entries from backup if installation verification fails.
 
 Use `git diff upstream/main...HEAD` and `git log upstream/main..HEAD` to inspect our changes since the shared ancestor. They show divergence, not proof that the branch includes every latest upstream commit.
 
@@ -73,3 +79,5 @@ Retain private audit branches locally if needed, but never merge or push them in
 ## Attribution
 
 The upstream MIT license and original attribution are retained. This is a separately maintained fork, not an upstream release. Public aihero.dev links in the docs describe upstream; changed local docs describe this branch.
+
+Delivery-mode engineering is mirrored from standalone revision `05eae159fdca7c58fd783306aba8209ad287239a`. Its original MIT notice is retained inside the bundled skill. Subsequent delivery-skill changes start in that standalone repository and are synced here through a reviewed branch.

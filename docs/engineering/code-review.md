@@ -16,6 +16,8 @@ Type `/code-review`, or let the agent invoke it for a branch, PR or work-in-prog
 
 Substantial changes use clean-context reviewers when available. They receive the contract and source, not the implementer's success story. The shared `assurance-case` reference owns the detailed falsification method; low-risk reviews stay small.
 
+The bundled `delivery-mode-engineering` skill supplies the current acceptance bar and review dispositions. Each material finding has both a severity and a disposition: current proof/floor blocker, iteration, admitted deferred obligation, or optional suggestion. Independent reviewers receive the same current scope, core quality expectations and accepted limitations.
+
 ## Common questions
 
 **Will it review code before I commit?**
@@ -38,10 +40,15 @@ No. Material findings need enough evidence to act on. Repetitive prose is still 
 
 No. It reports the exact reviewed state and limits. New fixes earn rechecks of affected paths, not an endless cycle of stylistic cleanup.
 
+**Can a missing test fail a dogfood review?**
+
+Yes, when the missing evidence prevents a required core or floor claim from being established. If adequate decisive evidence already exists and no binding rule requires another durable test, the additional test can be a nonblocking improvement. An unusual reachable security failure can still block; an unsupported hypothetical caller alone does not.
+
 ## It's working if
 
 - Reviewers see raw contracts and code before completion claims.
 - Findings cite current source and a specific violated requirement or evidence gap.
+- You can tell which findings block today's delivery and why, separately from their severity.
 - The final report identifies what ran, what could not run and which state was reviewed.
 - Review alone causes no source edits or live side effects.
 
