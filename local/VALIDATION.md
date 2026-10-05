@@ -2,7 +2,7 @@
 
 ## Repeatable checks
 
-- `check_source.py` parses frontmatter, verifies skill names and invocation-policy alignment, checks promoted plugin membership, and resolves local links in changed skills and their docs.
+- `check_source.py` parses frontmatter, verifies skill names and invocation-policy alignment, checks promoted plugin membership, and resolves local links in the selected changed skills. It checks required headings in their docs, not docs-link targets or semantic consistency.
 - `test_verify_install.py` checks exact equality, changed bytes, missing/extra files, and inclusion of real reference/UI files.
 - `verify_install.py` compares the complete current skill source against explicitly supplied installation roots. Its output contains per-file hashes; save machine-specific release output outside Git.
 
@@ -24,6 +24,14 @@ The [delivery-calibration probes](evals/delivery-calibration/README.md) add port
 - Rejected conflicting accounting repair requests against the settled requirement, kept a redundant test nonblocking, and identified the missing real receipt as the remaining gate.
 
 An initial control left decimal precision unbounded and the reviewer found real rounding under that stated domain. The fixture was clarified to its intended currency-export bounds and rerun in a fresh context. Skill behavior was unchanged by that correction. Earlier positive review/planning smoke results remain controls, not a statistical baseline comparison. Responses and machine-specific receipts stay outside Git.
+
+## Upstream integration checks
+
+The integration through upstream `4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d` passes the source check for 40 current skills, the four installation-comparison unit tests, package/plugin version consistency at 1.3.1, and strict marketplace validation. Explicit plugin validation passes with the existing root-CLAUDE warning; strict plugin validation still treats it as an error.
+
+A bounded fresh-context leaf-agent probe of the promoted `implement-spec` preserved offline branch-only completion, missing required live evidence as an open readiness gate, calibrated review dispositions and the inherited cosmetic-change boundary. No ticket workload, live provider call or end-to-end parallel orchestration was executed.
+
+Temporary-copy fault probes showed that the structural validator rejects missing promoted membership, mismatched invocation policy, a missing docs heading and a broken local skill link. A false docs promise about readiness still passed, confirming that semantic consistency needs source review. The probe copies were discarded. Independent source review also corrected the glossary rename FAQ and qualified the imported fast-forward landing promise; concurrent sibling work can still require reconciliation.
 
 ## Known tool limitations
 

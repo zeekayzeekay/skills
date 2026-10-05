@@ -16,9 +16,9 @@ The main path runs from sharpening an idea to implementation and review, with pr
 
 Delivery-mode engineering runs across those steps: it keeps core outcomes, current rigor, accepted limitations and justified future boundaries consistent. It also owns review dispositions and the stopping rule. You can use it independently; bundling it does not create another phase or require a new interview for a routine fix.
 
-Beta and miscellaneous tools are available in this installation but keep their upstream maturity and platform limits. In particular, upstream marks `retro` as a design-notes stub.
+[implement-spec](https://aihero.dev/skills-implement-spec), [pr](https://aihero.dev/skills-pr) and [retro](https://aihero.dev/skills-retro) are now promoted. `pr` shapes pull request bodies; `retro` reflects on the session and suggests improvements to the agent's environment. Beta and miscellaneous tools retain their upstream maturity and platform limits, including the experimental `chief-of-staff` coordination skill.
 
-The beta `implement-spec` workflow carries the same delivery context and review dispositions through its parallel ticket work. Its final handoff distinguishes PR review status from demonstrated mode readiness and keeps unresolved evidence visible.
+The promoted `implement-spec` workflow carries the same delivery context and review dispositions through parallel ticket work on one integration branch. A PR is optional according to the tracker and the user's request. Its final handoff distinguishes ticket completion and PR review status from demonstrated mode readiness and keeps unresolved evidence visible.
 
 ## Common questions
 

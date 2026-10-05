@@ -79,7 +79,7 @@ A very large spec can outgrow what a tracker issue serves back cleanly, and ther
 This fork requires criteria to name an observable result and the current claim it supports. Check the failure the observation would expose and which slice owns it. New behavior should be absent before implementation; preserved invariants can already pass and should be identified as regression protection. A criterion requiring another ticket's unfinished work belongs behind an explicit dependency.
 
 **The tickets are published. How do I actually run them?**
-The skill stops at the artifact, and there is no auto-dispatch mode. Dispatch is manual: look at the board, count the tickets with no open blockers, and open that many agent sessions. One ticket per fresh context, cleared between them. Be aware that [implement](https://aihero.dev/skills-implement) does not reliably close or check off the ticket when it finishes, on GitHub or in local markdown, so the ticket's state is yours to update.
+This skill stops at the artifact. Run [implement](https://aihero.dev/skills-implement) per ready ticket in a fresh context, updating its tracker state yourself when needed, or use [implement-spec](https://aihero.dev/skills-implement-spec) to build the whole task graph in parallel on one integration branch and resolve tickets through the configured tracker.
 
 ## It's working if
 
@@ -95,7 +95,7 @@ The skill stops at the artifact, and there is no auto-dispatch mode. Dispatch is
 `to-tickets` is a step in the main build chain:
 
 ```txt
-grill-with-docs → to-spec → to-tickets → implement → code-review
+grill-with-docs → to-spec → to-tickets → implement → code-review → retro
 ```
 
 Upstream is [to-spec](https://aihero.dev/skills-to-spec), which hands it a settled spec to slice against; keep both in one unbroken context window. Downstream is [implement](https://aihero.dev/skills-implement), which builds one ticket per fresh session, driving [tdd](https://aihero.dev/skills-tdd) for the tests and closing with [code-review](https://aihero.dev/skills-code-review). When you're unsure which skill or flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.

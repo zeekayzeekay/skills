@@ -26,7 +26,7 @@ def main():
     promoted = {"./" + p.relative_to(ROOT).as_posix() for p in skills.values() if p.parent.name in ("engineering", "productivity")}
     manifest = json.loads((ROOT / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))
     assert set(manifest["skills"]) == promoted
-    for name in ("assurance-case", "implement", "tdd", "code-review", "ask-matt", "delivery-mode-engineering", "to-spec", "to-tickets", "handoff"):
+    for name in ("assurance-case", "implement", "tdd", "code-review", "ask-matt", "delivery-mode-engineering", "to-spec", "to-tickets", "handoff", "implement-spec", "pr", "retro"):
         skill = skills[name]
         for file in skill.rglob("*.md"):
             for target in re.findall(r"\]\(([^)]+)\)", file.read_text(encoding="utf-8")):

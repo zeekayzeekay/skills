@@ -37,4 +37,6 @@ Yes. Evidence is bounded. The close-out names commands, decisive checks, review 
 
 ## Where it fits
 
+For a whole spec with a ticket graph, [implement-spec](https://aihero.dev/skills-implement-spec) builds ready tickets in parallel on one integration branch. [retro](https://aihero.dev/skills-retro) can then use the session to suggest improvements to the agent's environment.
+
 The implementation step uses [tdd](https://aihero.dev/skills-tdd) and [code-review](https://aihero.dev/skills-code-review), with the local `assurance-case` reference for consequential claims. [ask-matt](https://aihero.dev/skills-ask-matt) maps the surrounding flows; a settled plan need not traverse them again.

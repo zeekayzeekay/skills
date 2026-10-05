@@ -26,7 +26,9 @@ There is no automatic GitHub-to-installation synchronization. Fetching, merging 
 - `delivery-mode-engineering` owns current acceptance, review dispositions and justified future boundaries. Specs, tickets, implementation and handoffs carry the same context without restarting settled work. Required core outcomes stay evidenced in every mode.
 - `ask-matt`, supporting references, invocation metadata and human-facing docs reflect these changes.
 
-The upstream skill set is otherwise retained, including beta and miscellaneous skills. Their presence does not imply stable behavior or compatibility with every platform or harness. `retro` is still described by upstream as a design-notes stub. Deprecated names should not be installed.
+Upstream changes through `4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d` are integrated in this release. `implement-spec`, `pr` and `retro` are promoted to engineering, the domain-document convention is `GLOSSARY.md`/`GLOSSARY-MAP.md`, and the experimental `chief-of-staff` skill remains in-progress. `resolving-merge-conflicts` is removed following upstream; back up and retire its old installed copy only during an authorized installation.
+
+The upstream skill set is otherwise retained, including beta and miscellaneous skills. Their presence does not imply stable behavior or compatibility with every platform or harness. The promoted `implement-spec` combines upstream's integration-branch and optional-PR behavior with our shared delivery context, calibrated review fixes and evidence-sensitive readiness handoff. Deprecated names should not be installed.
 
 Delivery calibration is independently usable and adds no mandatory lifecycle phase. No private installation receipts, machine-specific logs or unrelated project records are included here.
 
